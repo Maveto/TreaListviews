@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductActivity"
+    android:padding="@dimen/space_xl"
+    android:background="@color/background">
+
+    <Button
+        android:id="@+id/volver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_md"
+        android:background="@color/design_default_color_primary_dark"
+        android:text="Volver" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icono"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:srcCompat="@drawable/ark"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Ark Survival Evolved"
+            android:textSize="@dimen/space_xl"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textoPrecio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/precio"
+                android:textSize="@dimen/subtitle" />
+
+            <TextView
+                android:id="@+id/precio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="49.99"
+                android:textSize="@dimen/subtitle" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/comprar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_md"
+            android:background="@color/design_default_color_primary_dark"
+            android:text="Comprar" />
+
+    </LinearLayout>
+
+</RelativeLayout>

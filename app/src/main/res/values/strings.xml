@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Trea Listviews</string>
+    <string name="productos"><b><u>Juegos</u></b></string>
+    <string name="precio">Precio: </string>
+</resources>
