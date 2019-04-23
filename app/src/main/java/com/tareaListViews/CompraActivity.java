@@ -24,7 +24,9 @@ public class CompraActivity extends AppCompatActivity {
     private ListView productos;
     private TextView total;
     private Button comprar;
+    private Button seguirCompra;
     private Button volver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class CompraActivity extends AppCompatActivity {
         productos.setAdapter(adapter);
         total = findViewById(R.id.total);
         comprar = findViewById(R.id.comprar);
+        seguirCompra = findViewById(R.id.seguirCompra);
         volver = findViewById(R.id.volver);
     }
 
@@ -56,7 +59,7 @@ public class CompraActivity extends AppCompatActivity {
         Carrito.getInstance().addCompra(objeto);
         //juego.setText(objeto.getNombre());
         //precio.setText(objeto.getPrecio());
-        total.setText(objeto.getPrecio());
+        total.setText(Carrito.getInstance().suma() + "$");
     }
 
     public void addEvents(){
@@ -76,6 +79,15 @@ public class CompraActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 setResult(RESULT_CANCELED, intent);
+                finish();
+            }
+        });
+
+        seguirCompra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

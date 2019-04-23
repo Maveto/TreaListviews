@@ -51,16 +51,16 @@ public class CarritoAdapter extends BaseAdapter {
 
             viewHolder.imagen = vista.findViewById(R.id.imagen);
             viewHolder.nombre = vista.findViewById(R.id.nombre);
-
+            viewHolder.costo = vista.findViewById(R.id.costo);
             vista.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder)vista.getTag();
         }
 
-        Producto productoActual =items.get(position);
+        Producto productoActual = items.get(position);
         viewHolder.imagen.setImageResource(productoActual.getImagen());
         viewHolder.nombre.setText(productoActual.getNombre());
-
+        viewHolder.costo.setText(productoActual.getPrecio());
 
         return vista;
     }
@@ -68,6 +68,7 @@ public class CarritoAdapter extends BaseAdapter {
     static class ViewHolder{
         ImageView imagen;
         TextView nombre;
+        TextView costo;
 
     }
 
