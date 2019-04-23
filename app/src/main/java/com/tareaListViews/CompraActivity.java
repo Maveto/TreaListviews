@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import com.tareaListViews.adapter.CarritoAdapter;
 import com.tareaListViews.models.Producto;
 
+import java.util.List;
+
 public class CompraActivity extends AppCompatActivity {
 
     private Context mContext;
@@ -56,9 +58,9 @@ public class CompraActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String json = intent.getStringExtra(Constants.KEY_INTENT);
         Producto objeto = new Gson().fromJson(json, Producto.class);
-        Carrito.getInstance().addCompra(objeto);
         //juego.setText(objeto.getNombre());
         //precio.setText(objeto.getPrecio());
+        verificarCarrito(objeto);
         total.setText(Carrito.getInstance().suma() + "$");
     }
 
@@ -91,5 +93,19 @@ public class CompraActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void verificarCarrito(Producto objeto){
+        List<Producto> carrito = Carrito.getInstance().getCompras();
+        boolean contiene = false;
+        for(int i  = 0; i<carrito.size(); i++) {
+            if (carrito.get(i).getId() == objeto.getId()) {
+                contiene = true;
+            }
+        }
+
+        if (!contiene){
+            Carrito.getInstance().addCompra(objeto);
+        }
     }
 }
