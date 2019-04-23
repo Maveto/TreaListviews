@@ -12,15 +12,16 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import com.tareaListViews.adapter.CarritoAdapter;
 import com.tareaListViews.models.Producto;
 
 public class CompraActivity extends AppCompatActivity {
 
     private Context mContext;
 
-    private TextView juego;
-    private TextView precio;
-    //private ListView productos;
+    //private TextView juego;
+    //private TextView precio;
+    private ListView productos;
     private TextView total;
     private Button comprar;
     private Button volver;
@@ -38,9 +39,11 @@ public class CompraActivity extends AppCompatActivity {
     }
 
     public void initViews(){
-        juego = findViewById(R.id.juego);
-        precio = findViewById(R.id.precio);
-        //productos = findViewById(R.id.productos);
+        //juego = findViewById(R.id.juego);
+        //precio = findViewById(R.id.precio);
+        productos = findViewById(R.id.productos);
+        CarritoAdapter adapter= new CarritoAdapter(mContext, Carrito.getInstance().getCompras());
+        productos.setAdapter(adapter);
         total = findViewById(R.id.total);
         comprar = findViewById(R.id.comprar);
         volver = findViewById(R.id.volver);
@@ -50,8 +53,9 @@ public class CompraActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String json = intent.getStringExtra(Constants.KEY_INTENT);
         Producto objeto = new Gson().fromJson(json, Producto.class);
-        juego.setText(objeto.getNombre());
-        precio.setText(objeto.getPrecio());
+        Carrito.getInstance().addCompra(objeto);
+        //juego.setText(objeto.getNombre());
+        //precio.setText(objeto.getPrecio());
         total.setText(objeto.getPrecio());
     }
 
@@ -59,6 +63,7 @@ public class CompraActivity extends AppCompatActivity {
         comprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Carrito.getInstance().removeAll();
                 Toast.makeText(mContext, "Compra Realizada", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);
